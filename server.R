@@ -5,19 +5,25 @@
 # http://www.rstudio.com/shiny/
 #
 
-library(shiny)
+
+library(quantmod)
 
 shinyServer(function(input, output) {
-   
-  output$distPlot <- renderPlot({
+  
+  output$distPlot <- renderPlot({  
+    validate(
+      need(input$symbol != "", "Please select a stock symbol"),
+      need(input$dates[1] + days(5) <= input$dates[2] , "Please select a range of 5 or more days")
+    )
     
-    # generate bins based on input$bins from ui.R
-    x    <- faithful[, 2] 
-    bins <- seq(min(x), max(x), length.out = input$bins + 1)
+    sym <- getSymbols(input$symbol, src='yahoo')
     
-    # draw the histogram with the specified number of bins
-    hist(x, breaks = bins, col = 'darkgray', border = 'white')
+    data <- get(sym) 
+    data$dates <- data$index
     
+    range <- paste(input$dates[1],input$dates[2], sep="::")
+    
+    chartSeries(data, subset=range, name=sym, type=input$type)
   })
   
 })

@@ -6,20 +6,32 @@
 #
 
 library(shiny)
+library(lubridate)
+require(TTR)
+
+SYMs<-read.csv("./data/NYSE.csv", skip=3)
+SYMs<-SYMs[with(SYMs, order(Symbol)), ]
+row.names(SYMs)<-SYMs$Symbol
+SYMs$Symbol <- as.character(SYMs$Symbol)
 
 shinyUI(pageWithSidebar(
   
   # Application title
-  headerPanel("Old Faithful Geyser Data"),
+  headerPanel("NYSE Analysis Tool"),
   
   # Sidebar with a slider input for number of bins
   sidebarPanel(
-    sliderInput("bins",
-                "Number of bins:",
-                min = 1,
-                max = 50,
-                value = 30)
-  ),
+    
+    selectizeInput("symbol", label = h3("Symbol"), 
+                choices=setNames(SYMs$Symbol, SYMs$Name),
+                selected = "A"),
+    
+    dateRangeInput("dates", label = h3("Date range"), max = Sys.Date(), start=Sys.Date()-months(1)),
+    
+    selectInput("type", label = h3("Chart Type"), 
+                choices = list("Candle" = "candlesticks", "Bar" = "bars", "Line"= "line",  "Match" = "matchsticks"), 
+                selected = "candlesticks")
+    ),
   
   # Show a plot of the generated distribution
   mainPanel(
