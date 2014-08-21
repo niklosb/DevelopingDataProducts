@@ -1,0 +1,16 @@
+{
+    "contents" : "NYSE Analytics App\n========================================================\nauthor: Nik Bosnyak\ndate: August 20th 2014\n\n\n\n```{r, echo=FALSE, fig.width=10 }\nrequire(quantmod)\nrequire(shiny)\nrequire(lubridate)\nrequire(TTR)\n\nSYMs<-read.csv(\"NYSE.csv\", skip=3)\nSYMs<-SYMs[with(SYMs, order(Symbol)), ]\nrow.names(SYMs)<-SYMs$Symbol\nSYMs$Symbol <- as.character(SYMs$Symbol)\n```\n\nCoursera's Developing Data Products Class\n\nOverview\n========================================================\n\n![alt text][id]\nStock analysis tool displays time series data of NYSE companies \n[id]: capture.png\n\n\nFeatures\n========================================================\n\n* Comprehensive Company List\n\n* Dynamic Date Ranges\n\n* Multiple Chart Types\n\n\nData Query\n========================================================\n\nQuantmod package queries data from Yahoo Finance API\n```{r}\nrequire(quantmod)\nsymbol <- getSymbols('GOOGL', src='yahoo')\nhead(GOOGL[,c(2:3,5)])\n\n```\n\n\nVisually Apealing Graphics\n========================================================\n\n![alt text][id]\n[id]: chart.png\n\n* Volume and Price\n* Color Indicators\n \n\n\n",
+    "created" : 1408590861113.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "625411463",
+    "id" : "4D10232B",
+    "lastKnownWriteTime" : 1408596871,
+    "path" : "~/GitHub/DevelopingDataProducts/Presentation.Rpres",
+    "project_path" : "Presentation.Rpres",
+    "properties" : {
+    },
+    "source_on_save" : false,
+    "type" : "r_presentation"
+}

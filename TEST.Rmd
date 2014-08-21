@@ -1,0 +1,77 @@
+---
+title: "NYSE APP"
+author: "Nik Bosnyak"
+date: "Wednesday, August 20, 2014"
+output: ioslides_presentation
+runtime: shiny
+---
+
+## Shiny Presentation
+
+This R Markdown presentation is made interactive using Shiny. The viewers of the presentation can change the assumptions underlying what's presented and see the results immediately. 
+
+To learn more, see [Interative Documents](http://rmarkdown.rstudio.com/authoring_shiny.html).
+
+```{r, echo=FALSE, results='hide'}
+require(quantmod)
+require(shiny)
+require(lubridate)
+require(TTR)
+```
+
+## Slide with Interactive Plot
+
+
+
+
+
+```{r, echo=FALSE}
+SYMs<-read.csv("NYSE.csv", skip=3)
+SYMs<-SYMs[with(SYMs, order(Symbol)), ]
+row.names(SYMs)<-SYMs$Symbol
+SYMs$Symbol <- as.character(SYMs$Symbol)
+
+inputPanel(
+  
+  selectizeInput("symbol", label = h3("Company"), 
+              choices=#list("A"="A"),
+                setNames(SYMs$Symbol, SYMs$Name),
+              selected = "A"),
+  
+  dateRangeInput("dates", label = h3("Date range"), max = Sys.Date(), start=Sys.Date()-months(1)),
+  
+  selectInput("type", label = h3("Chart Type"), 
+              choices = list("Candle" = "candlesticks", "Bar" = "bars", "Line"= "line",  "Match" = "matchsticks"), 
+              selected = "candlesticks")
+  )
+
+renderPlot({  
+    validate(
+      need(input$symbol != "", "Please select a company"),
+      need(input$dates[1] + days(5) <= input$dates[2] , "Please select a range of 5 or more days")
+    )
+    
+    sym <- getSymbols(input$symbol, src='yahoo')
+    
+    data <- get(sym) 
+    data$dates <- data$index
+    
+    range <- paste(input$dates[1],input$dates[2], sep="::")
+    
+    chartSeries(data, subset=range, name=sym, type=input$type)
+  })
+```
+
+## Slide with Bullets
+
+- Bullet 1
+- Bullet 2
+- Bullet 3
+
+## Slide with R Code and Output
+
+```{r}
+summary(cars)
+```
+
+

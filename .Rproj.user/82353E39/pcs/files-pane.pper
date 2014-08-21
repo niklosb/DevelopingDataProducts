@@ -1,6 +1,10 @@
 {
-    "path" : "~/GitHub/DevelopingDataProducts",
+    "path" : "~/GitHub/DevelopingDataProducts/Data",
     "sortOrder" : [
+        {
+            "ascending" : false,
+            "columnIndex" : 1
+        },
         {
             "ascending" : true,
             "columnIndex" : 2

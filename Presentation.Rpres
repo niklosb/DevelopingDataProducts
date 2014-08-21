@@ -1,0 +1,62 @@
+NYSE Analytics App
+========================================================
+author: Nik Bosnyak
+date: August 20th 2014
+
+
+
+```{r, echo=FALSE, fig.width=10 }
+require(quantmod)
+require(shiny)
+require(lubridate)
+require(TTR)
+
+SYMs<-read.csv("NYSE.csv", skip=3)
+SYMs<-SYMs[with(SYMs, order(Symbol)), ]
+row.names(SYMs)<-SYMs$Symbol
+SYMs$Symbol <- as.character(SYMs$Symbol)
+```
+
+Coursera's Developing Data Products Class
+
+Overview
+========================================================
+
+![alt text][id]
+Stock analysis tool displays time series data of NYSE companies 
+[id]: capture.png
+
+
+Features
+========================================================
+
+* Comprehensive Company List
+
+* Dynamic Date Ranges
+
+* Multiple Chart Types
+
+
+Data Query
+========================================================
+
+Quantmod package queries data from Yahoo Finance API
+```{r}
+require(quantmod)
+symbol <- getSymbols('GOOGL', src='yahoo')
+head(GOOGL[,c(2:3,5)])
+
+```
+
+
+Visually Apealing Graphics
+========================================================
+
+![alt text][id]
+[id]: chart.png
+
+* Volume and Price
+* Color Indicators
+ 
+
+
