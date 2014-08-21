@@ -1,0 +1,16 @@
+{
+    "contents" : "\n# This is the server logic for a Shiny web application.\n# You can find out more about building applications with Shiny here:\n# \n# http://www.rstudio.com/shiny/\n#\n\n\nrequire(quantmod)\n\nshinyServer(function(input, output) {\n  \n  output$distPlot <- renderPlot({  \n    validate(\n      need(input$symbol != \"\", \"Please select a company\"),\n      need(input$dates[1] + days(5) <= input$dates[2] , \"Please select a range of 5 or more days\")\n    )\n    \n    sym <- getSymbols(input$symbol, src='yahoo')\n    \n    data <- get(sym) \n    data$dates <- data$index\n    \n    range <- paste(input$dates[1],input$dates[2], sep=\"::\")\n    \n    chartSeries(data, subset=range, name=sym, type=input$type)\n  })\n  \n})\n",
+    "created" : 1407897732487.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1196356171",
+    "id" : "11821CA8",
+    "lastKnownWriteTime" : 1408588079,
+    "path" : "~/GitHub/DevelopingDataProducts/server.R",
+    "project_path" : "server.R",
+    "properties" : {
+    },
+    "source_on_save" : false,
+    "type" : "r_source"
+}

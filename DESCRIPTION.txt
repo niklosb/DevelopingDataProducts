@@ -1,0 +1,7 @@
+Title: NYSE APP for COURSERA's Devloping Data Products
+Author: Nik Bosnyak
+AuthorUrl: http://niklosb.shinyapps.io/DevelopingDataProducts/
+License: NONE
+DisplayMode: Showcase
+Tags: Coursera
+Type: Shiny

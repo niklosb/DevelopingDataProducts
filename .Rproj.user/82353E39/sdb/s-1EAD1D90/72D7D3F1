@@ -1,0 +1,22 @@
+{
+    "contents" : "",
+    "created" : 1408588850540.000,
+    "dirty" : false,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "72D7D3F1",
+    "lastKnownWriteTime" : 7741240722073845761,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "caption" : "SYMs",
+        "contentUrl" : "content?title=SYMs&file=60a8e293d76e424eb4037e2c4f34ed5f.htm",
+        "displayedObservations" : 1000,
+        "displayedVariables" : 15,
+        "totalObservations" : 2178,
+        "variables" : 15
+    },
+    "source_on_save" : false,
+    "type" : "r_dataframe"
+}

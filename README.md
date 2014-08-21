@@ -1,7 +1,15 @@
-Developing Data Products
-======================
 How to Use
 --------------------------
+This app can be found at http://niklosb.shinyapps.io/DevelopingDataProducts/
+
+1. Select a company from the list of publicly traded companies on the New York Stock Exchange. You can simply type in the name of the company and if it is listed, an auto-complete option will be presented.
+
+2. Choose the date range that you want to investigate (optional). Note: The date range must be greater than 5 days apart.
+
+3. Select the chart type that you want to view the data in (optional).
+
+The top section of the output plot represents the trading price. Green represents a net gain for the period, while orange represents a net loss. The bottom panel of the plot shows trading volumes.
+
 
 Project Requirements
 --------------------------

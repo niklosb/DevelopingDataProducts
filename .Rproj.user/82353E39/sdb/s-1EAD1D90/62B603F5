@@ -1,0 +1,16 @@
+{
+    "contents" : "\n# This is the user-interface definition of a Shiny web application.\n# You can find out more about building applications with Shiny here:\n# \n# http://www.rstudio.com/shiny/\n#\n\nrequire(shiny)\nrequire(lubridate)\nrequire(TTR)\n\nSYMs<-read.csv(\"NYSE.csv\", skip=3)\nSYMs<-SYMs[with(SYMs, order(Symbol)), ]\nrow.names(SYMs)<-SYMs$Symbol\nSYMs$Symbol <- as.character(SYMs$Symbol)\n\nshinyUI(pageWithSidebar(\n  \n  # Application title\n  headerPanel(\"NYSE Analysis Tool\"),\n  \n  # Sidebar with a slider input for number of bins\n  sidebarPanel(\n    \n    selectizeInput(\"symbol\", label = h3(\"Company\"), \n                choices=#list(\"A\"=\"A\"),\n                  setNames(SYMs$Symbol, SYMs$Name),\n                selected = \"A\"),\n    \n    dateRangeInput(\"dates\", label = h3(\"Date range\"), max = Sys.Date(), start=Sys.Date()-months(1)),\n    \n    selectInput(\"type\", label = h3(\"Chart Type\"), \n                choices = list(\"Candle\" = \"candlesticks\", \"Bar\" = \"bars\", \"Line\"= \"line\",  \"Match\" = \"matchsticks\"), \n                selected = \"candlesticks\")\n    ),\n  \n  # Show a plot of the generated distribution\n  mainPanel(\n    plotOutput(\"distPlot\")\n  )\n))\n",
+    "created" : 1407897732322.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "432325634",
+    "id" : "62B603F5",
+    "lastKnownWriteTime" : 1408590335,
+    "path" : "~/GitHub/DevelopingDataProducts/ui.R",
+    "project_path" : "ui.R",
+    "properties" : {
+    },
+    "source_on_save" : false,
+    "type" : "r_source"
+}

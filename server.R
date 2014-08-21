@@ -6,13 +6,13 @@
 #
 
 
-library(quantmod)
+require(quantmod)
 
 shinyServer(function(input, output) {
   
   output$distPlot <- renderPlot({  
     validate(
-      need(input$symbol != "", "Please select a stock symbol"),
+      need(input$symbol != "", "Please select a company"),
       need(input$dates[1] + days(5) <= input$dates[2] , "Please select a range of 5 or more days")
     )
     
